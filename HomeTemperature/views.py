@@ -1,7 +1,7 @@
 import datetime
 
 import pytz
-from HomeTemperature.models import TemperatureData
+from HomeTemperature.models import TemperatureData, APITemperatureData
 
 from django.views.generic import TemplateView
 from chartjs.views.lines import BaseLineChartView
@@ -45,8 +45,11 @@ class LineChartJSONView(BaseLineChartView):
         """Return 3 datasets to plot."""
         temperature_data = TemperatureData.objects.all().filter(
             date__gte=datetime.datetime.now() - datetime.timedelta(days=1))
+        api_temperature_data = APITemperatureData.objects.all().filter(
+            date__gte=datetime.datetime.now() - datetime.timedelta(days=1))
         temps = [data.temperature for data in temperature_data]
-        return [temps, ]
+        temps_api = [data.temperature for data in api_temperature_data]
+        return [temps, temps_api]
 
 
 class HumidityJSONView(BaseLineChartView):

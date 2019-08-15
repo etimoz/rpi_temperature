@@ -19,4 +19,4 @@ class Command(BaseCommand):
         else:
             service = TemperatureService()
 
-        service.start()
+        service.run()

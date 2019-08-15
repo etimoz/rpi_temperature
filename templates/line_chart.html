@@ -7,9 +7,10 @@
         <![endif]-->
     </head>
     <body>
-        <h1>Some Line Charts loaded in Ajax!</h1>
+        <h1>Temperature & Humidity</h1>
 
         <canvas id="myChart"></canvas>
+        <canvas id="myHumidity"></canvas>
 
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
         <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
@@ -17,7 +18,29 @@
             $.get('{% url "temperature_data" %}', function(data) {
                 var ctx = $("#myChart").get(0).getContext("2d");
                 new Chart(ctx, {
-                    type: 'line', data: data
+                    type: 'line',
+                    data: data,
+                    options: {
+                        scales: {
+                             yAxes: [{
+                                 ticks: {min:0, max:35}
+                            }]   
+                        }
+                    }
+                });
+            });
+            $.get('{% url "humidity_data" %}', function(data) {
+                var ctx = $("#myHumidity").get(0).getContext("2d");
+                new Chart(ctx, {
+                    type: 'line',
+                    data: data,
+                    options: {
+                        scales: {
+                             yAxes: [{
+                                 ticks: {min:0, max:100}
+                            }]   
+                        }
+                    }
                 });
             });
         </script>

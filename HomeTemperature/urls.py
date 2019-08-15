@@ -20,5 +20,7 @@ from django.urls import path, re_path
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^temperature_data$', views.line_chart_json, name='temperature_data'),
+    re_path(r'^humidity_data$', views.humidity_chart_json, name='humidity_data'),
     re_path(r'^$', views.line_chart, )
+    
 ]

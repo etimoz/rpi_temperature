@@ -1,13 +1,13 @@
 {% load staticfiles %}
 <html>
     <head>
-        <title>django-chartjs line chart demo</title>
+        <title>Temperature & Humidity</title>
         <!--[if lte IE 8]>
             <script src="{% static 'js/excanvas.js' %}"></script>
         <![endif]-->
     </head>
     <body>
-        <h1>Temperature & Humidity</h1>
+        <h1>Temperature & Humidity {{ test }}</h1>
 
         <canvas id="myChart"></canvas>
         <canvas id="myHumidity"></canvas>
@@ -20,6 +20,7 @@
                 new Chart(ctx, {
                     type: 'line',
                     data: data,
+
                     options: {
                         scales: {
                              yAxes: [{

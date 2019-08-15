@@ -1,6 +1,6 @@
 from service import Service
 from time import sleep
-from HomeTemperature.models import TemperatureData
+from models import TemperatureData
 
 import RPi.GPIO as GPIO
 import dht11

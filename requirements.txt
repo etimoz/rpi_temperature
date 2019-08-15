@@ -1,0 +1,12 @@
+Django==2.2.4
+django-chartjs==1.5.0
+docutils==0.15.2
+lockfile==0.12.2
+pid==2.2.4
+python-daemon==2.2.3
+pytz==2019.2
+schedule==0.6.0
+service==0.6.0
+setproctitle==1.1.10
+six==1.12.0
+sqlparse==0.3.0

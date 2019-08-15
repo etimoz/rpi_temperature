@@ -1,10 +1,18 @@
 from service import Service
 from time import sleep
-from models import TemperatureData
 
 import RPi.GPIO as GPIO
 import dht11
 import schedule
+
+
+
+import os
+# django project name is adleads, replace adleads with your project name
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "HomeTemperature.settings")
+
+from models import TemperatureData
+
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)

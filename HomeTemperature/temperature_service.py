@@ -9,7 +9,7 @@ import schedule
 
 import os
 # django project name is adleads, replace adleads with your project name
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "HomeTemperature.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 from models import TemperatureData
 

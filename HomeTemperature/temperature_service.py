@@ -4,7 +4,9 @@ from time import sleep
 import RPi.GPIO as GPIO
 from HomeTemperature import dht11
 #import dht11
-import schedule
+import requests
+import json
+from threading import Thread
 
 from HomeTemperature.models import TemperatureData
 
@@ -16,7 +18,6 @@ GPIO.cleanup()
 class TemperatureService:
     def __init__(self, sensor_pin=4, minutes=60):
         self.minutes = minutes
-        schedule.every(minutes).seconds.do(self._record_data)
         self.instance = dht11.DHT11(pin=sensor_pin)
 
     def run(self):
@@ -46,3 +47,14 @@ class TemperatureService:
             data_point.temperature = temperature
             data_point.humidity = humidity
             data_point.save()
+
+    def _fetch_api_data(self, url):
+        temperature, humidity = None, None
+        try:
+            response = requests.get(url)
+            json_response = json.loads(response.text)
+            temperature = json_response["currently"]["temperature"]
+            humidity = json_response["currently"]["humidity"]
+        except Exception as e:
+            print(e)
+        return temperature, humidity

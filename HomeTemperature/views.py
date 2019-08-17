@@ -27,7 +27,7 @@ class LineChartJSONView(BaseLineChartView):
     def get_labels(self):
         """Return 7 labels for the x-axis."""
         temperature_data = TemperatureData.objects.all().filter(
-            date__gte=datetime.datetime.now() - datetime.timedelta(days=1))
+            date__gte=datetime.datetime.now() - datetime.timedelta(days=1))[::30]
         labels = list()
 
         for data in temperature_data:
@@ -44,7 +44,7 @@ class LineChartJSONView(BaseLineChartView):
     def get_data(self):
         """Return 3 datasets to plot."""
         temperature_data = TemperatureData.objects.all().filter(
-            date__gte=datetime.datetime.now() - datetime.timedelta(days=1))
+            date__gte=datetime.datetime.now() - datetime.timedelta(days=1))[::30]
         temps = [data.temperature for data in temperature_data]
         return [temps, ]
 
@@ -52,7 +52,7 @@ class LineChartJSONView(BaseLineChartView):
 class HumidityJSONView(BaseLineChartView):
     def get_labels(self):
         """Return 7 labels for the x-axis."""
-        temperature_data = TemperatureData.objects.all()  # .filter(date__gte=datetime.now() - timedelta(days=1))
+        temperature_data = TemperatureData.objects.all().filter(date__gte=datetime.datetime.now() - datetime.timedelta(days=1))[::30]
         labels = list()
         for data in temperature_data:
             my_date = data.date
@@ -67,7 +67,7 @@ class HumidityJSONView(BaseLineChartView):
 
     def get_data(self):
         """Return 3 datasets to plot."""
-        temperature_data = TemperatureData.objects.all()  # .filter(date__gte=datetime.now() - timedelta(days=1))
+        temperature_data = TemperatureData.objects.all().filter(date__gte=datetime.datetime.now() - datetime.timedelta(days=1))[::30]
         temps = [data.humidity for data in temperature_data]
         return [temps, ]
 

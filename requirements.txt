@@ -1,6 +1,6 @@
 chartjs
 dateutil
-Django==2.2.4
+Django==2.2.13
 django-chartjs==1.5.0
 docutils==0.15.2
 lockfile==0.12.2
